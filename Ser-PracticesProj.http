@@ -1,0 +1,6 @@
+@Ser_PracticesProj_HostAddress = http://localhost:5091
+
+GET {{Ser_PracticesProj_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
