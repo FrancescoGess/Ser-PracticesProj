@@ -9,5 +9,7 @@ namespace Ser_PracticesProj.Services
     public interface IBookService
     {
         public List<Book> GetAll();
+        public Book GetById(int Id);
+        public void DeleteById(int Id);
     }
 }

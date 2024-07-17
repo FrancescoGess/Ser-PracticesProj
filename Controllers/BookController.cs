@@ -38,5 +38,20 @@ namespace Ser_PracticesProj.Controllers
             List<Book> books = bookService.GetAll();
             return Ok(books);
         }
+
+
+        [HttpGet("{Id}")]
+        public Book GetById(int Id)
+        {
+            return bookService.GetById(Id);
+        }
+
+
+        [HttpDelete("{Id}")]
+        public void DeleteById(int Id)
+        {
+            bookService.DeleteById(Id);
+        }
+
     }
 }

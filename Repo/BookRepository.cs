@@ -21,5 +21,18 @@ namespace Ser_PracticesProj.Repo
             return _context.Books.ToList();
         }
 
+        public Book GetById(int Id)
+        {
+            Book book = _context.Books.Where(b => b.Id == Id).First();
+            return book;
+        }
+
+        public void DeleteById(int Id)
+        {
+            Book book = _context.Books.Where(b => b.Id == Id).First();
+            _context.Remove(book);
+            _context.SaveChanges();
+        }
+
     }
 }

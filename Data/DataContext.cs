@@ -16,5 +16,7 @@ namespace Ser_PracticesProj.Data
         public DbSet<Book> Books { get; set; }
 
 
+
+
     }
 }
