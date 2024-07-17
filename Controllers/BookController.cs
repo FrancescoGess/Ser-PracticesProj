@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Ser_PracticesProj.Data;
 using Ser_PracticesProj.Entites;
+using Ser_PracticesProj.Repo;
+using Ser_PracticesProj.Services;
+
 
 namespace Ser_PracticesProj.Controllers
 {
@@ -11,12 +16,26 @@ namespace Ser_PracticesProj.Controllers
     [Route("api/[controller]")]
     public class BookController : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> getAll()
+        private readonly IBookService bookService;
+
+        public BookController(IBookService bookService)
         {
-            var books = new List<Book>(){
+            this.bookService = bookService;
+        }
+
+        [HttpGet(Name = "Book")]
+        public async Task<IActionResult> GetAll()
+        {
+            /*var books = new List<Book>(){
                 new Book (1, "Il signore degli anelli", "1954"),
+                new Book (2, "Il signore degli orecchini", "1954"),
+                new Book (3, "Il signore delle collane", "1954"),
+                new Book (4, "Il signore dei bracciali", "1954"),
+                new Book (5, "Il signore delle cavigliere", "1954"),
             };
+            return Ok(books);*/
+
+            List<Book> books = bookService.GetAll();
             return Ok(books);
         }
     }
