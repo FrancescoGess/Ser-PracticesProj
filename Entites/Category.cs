@@ -10,15 +10,17 @@ namespace Ser_PracticesProj.Entites
 
         public int Id { get; set; }
         public String CatName { get; set; }
+        public List<Book> Books { get; set; }
 
         public Category()
         {
         }
 
-        public Category(int id, string catName)
+        public Category(int id, string catName, List<Book> books)
         {
             Id = id;
             CatName = catName;
+            Books = books;
         }
     }
 }

@@ -33,5 +33,14 @@ namespace Ser_PracticesProj.Services
             _categoryRepository.CreateCategory(category);
         }
 
+        public Category UpdateCategory(Category category)
+        {
+            {
+                _categoryRepository.UpdateCategory(category);
+                return category;
+            }
+
+        }
     }
+
 }

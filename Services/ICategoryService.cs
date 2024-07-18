@@ -12,5 +12,7 @@ namespace Ser_PracticesProj.Services
         public Category GetByName(String CatName);
         public void DeleteById(int Id);
         public void CreateCategory(Category category);
+        public Category UpdateCategory(Category category);
+
     }
 }

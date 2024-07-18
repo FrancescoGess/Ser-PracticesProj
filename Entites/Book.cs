@@ -27,7 +27,7 @@ namespace Ser_PracticesProj.Entites
             Title = title;
             Anno = anno;
             Description = description;
-            this.Category = category;
+            Category = category;
         }
     }
 }

@@ -37,6 +37,15 @@ namespace Ser_PracticesProj.Repo
             _context.SaveChanges();
         }
 
+        public Category UpdateCategory(Category category)
+        {
+            _context.Categories.Update(category);
+            _context.SaveChanges();
+            return category;
+        }
+
+
+
 
     }
 }
