@@ -6,12 +6,11 @@ using Ser_PracticesProj.Entites;
 
 namespace Ser_PracticesProj.Services
 {
-    public interface IBookService
+    public interface ICategoryService
     {
-        public List<Book> GetAll();
-        public Book GetById(int Id);
+        public List<Category> GetAll();
+        public Category GetByName(String CatName);
         public void DeleteById(int Id);
-        public void CreateBook(Book book);
-        public Book UpdateBook(Book book);
+        public void CreateCategory(Category category);
     }
 }
