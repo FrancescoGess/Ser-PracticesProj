@@ -53,9 +53,9 @@ namespace Ser_PracticesProj.Controllers
             {
                 throw new Exception("Categoria non trovata!");
             }
-            categoryUp.CatName = category.CatName
+            categoryUp.CatName = category.CatName;
             return Ok("Categoria aggiornata correttamente!");
-<        }
-
+        }
     }
+
 }
