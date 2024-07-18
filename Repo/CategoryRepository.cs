@@ -20,9 +20,9 @@ namespace Ser_PracticesProj.Repo
         {
             return _context.Categories.ToList();
         }
-        public Category GetByName(String CatName)
+        public Category GetById(int Id)
         {
-            Category category = _context.Categories.Where(c => c.CatName == CatName).First();
+            Category category = _context.Categories.Where(c => c.Id == Id).First();
             return category;
         }
         public void DeleteById(int Id)

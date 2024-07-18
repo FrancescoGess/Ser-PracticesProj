@@ -64,16 +64,16 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateBook(int Id, [FromBody] Book book)
         {
-            var bookf = bookService.GetById(Id);
-            if (bookf == null)
+            var bookUp = bookService.GetById(Id);
+            if (bookUp == null)
             {
                 throw new Exception("Libro non trovato!");
             }
-            bookf.Title = book.Title;
-            bookf.Anno = book.Anno;
-            bookf.Description = book.Description;
-            bookf.Category = book.Category;
-            bookService.UpdateBook(bookf);
+            bookUp.Title = book.Title;
+            bookUp.Anno = book.Anno;
+            bookUp.Description = book.Description;
+            // bookUp.Category = book.Category;
+            bookService.UpdateBook(bookUp);
             return Ok("Libro aggiornato correttamente!");
         }
 

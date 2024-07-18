@@ -20,9 +20,9 @@ namespace Ser_PracticesProj.Services
         {
             return _categoryRepository.GetAll();
         }
-        public Category GetByName(String CatName)
+        public Category GetById(int Id)
         {
-            return _categoryRepository.GetByName(CatName);
+            return _categoryRepository.GetById(Id);
         }
         public void DeleteById(int Id)
         {
