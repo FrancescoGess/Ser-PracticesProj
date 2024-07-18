@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Ser_PracticesProj.Entites
@@ -9,8 +10,10 @@ namespace Ser_PracticesProj.Entites
     {
 
         public int Id { get; set; }
+
         public String CatName { get; set; }
-        public List<Book> Books { get; set; }
+        [JsonIgnore]
+        public List<Book>? Books { get; set; }
 
         public Category()
         {

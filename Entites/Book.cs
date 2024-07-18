@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Ser_PracticesProj.Entites
@@ -13,7 +14,7 @@ namespace Ser_PracticesProj.Entites
         public string Title { get; set; }
         public string Anno { get; set; }
         public string Description { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
 
         public Book()
@@ -29,5 +30,6 @@ namespace Ser_PracticesProj.Entites
             Description = description;
             Category = category;
         }
+
     }
 }

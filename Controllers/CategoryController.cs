@@ -19,7 +19,7 @@ namespace Ser_PracticesProj.Controllers
             this.categoryService = categoryService;
         }
 
-        [HttpGet(Name = "Book")]
+        [HttpGet(Name = "Category")]
         public async Task<IActionResult> GetAll()
         {
             List<Category> categories = categoryService.GetAll();
