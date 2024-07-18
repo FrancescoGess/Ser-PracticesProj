@@ -71,6 +71,8 @@ namespace Ser_PracticesProj.Controllers
             }
             bookf.Title = book.Title;
             bookf.Anno = book.Anno;
+            bookf.Description = book.Description;
+            bookf.Category = book.Category;
             bookService.UpdateBook(bookf);
             return Ok("Libro aggiornato correttamente!");
         }
