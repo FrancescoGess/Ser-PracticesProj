@@ -11,5 +11,7 @@ namespace Ser_PracticesProj.Services
         public List<Book> GetAll();
         public Book GetById(int Id);
         public void DeleteById(int Id);
+
+        public void CreateBook(Book book);
     }
 }

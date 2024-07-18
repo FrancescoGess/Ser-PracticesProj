@@ -53,5 +53,13 @@ namespace Ser_PracticesProj.Controllers
             bookService.DeleteById(Id);
         }
 
+        [HttpPost]
+        public void CreateBook([FromBody] Book book)
+        {
+            bookService.CreateBook(book);
+        }
+
+
+
     }
 }

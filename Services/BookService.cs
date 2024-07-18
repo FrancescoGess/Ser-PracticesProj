@@ -26,5 +26,10 @@ namespace Ser_PracticesProj.Services
         {
             _bookRepository.DeleteById(Id);
         }
+
+        public void CreateBook(Book book)
+        {
+            _bookRepository.CreateBook(book);
+        }
     }
 }

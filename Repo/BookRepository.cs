@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Net.Http.Headers;
 using Ser_PracticesProj.Data;
 using Ser_PracticesProj.Entites;
 
@@ -31,6 +32,12 @@ namespace Ser_PracticesProj.Repo
         {
             Book book = _context.Books.Where(b => b.Id == Id).First();
             _context.Remove(book);
+            _context.SaveChanges();
+        }
+
+        public void CreateBook(Book book)
+        {
+            _context.Add(book);
             _context.SaveChanges();
         }
 
