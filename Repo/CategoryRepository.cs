@@ -23,6 +23,10 @@ namespace Ser_PracticesProj.Repo
         public Category GetById(int Id)
         {
             Category category = _context.Categories.Where(c => c.Id == Id).First();
+            if (category == null)
+            {
+                throw new KeyNotFoundException($"Categoria con ID {Id} non trovata");
+            }
             return category;
         }
         public void DeleteById(int Id)
@@ -37,6 +41,7 @@ namespace Ser_PracticesProj.Repo
             _context.SaveChanges();
         }
 
+        // update non aggiorna la categoria e rimane la stessa
         public Category UpdateCategory(Category category)
         {
             _context.Categories.Update(category);

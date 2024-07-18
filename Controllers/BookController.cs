@@ -72,7 +72,7 @@ namespace Ser_PracticesProj.Controllers
             bookUp.Title = book.Title;
             bookUp.Anno = book.Anno;
             bookUp.Description = book.Description;
-            // bookUp.Category = book.Category;
+            bookUp.CategoryId = book.CategoryId;
             bookService.UpdateBook(bookUp);
             return Ok("Libro aggiornato correttamente!");
         }
