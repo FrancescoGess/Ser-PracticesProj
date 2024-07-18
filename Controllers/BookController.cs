@@ -41,9 +41,10 @@ namespace Ser_PracticesProj.Controllers
 
 
         [HttpGet("{Id}")]
-        public Book GetById(int Id)
+        public async Task<IActionResult> GetById(int Id)
         {
-            return bookService.GetById(Id);
+            Book book = bookService.GetById(Id);
+            return Ok(book);
         }
 
 
@@ -54,9 +55,24 @@ namespace Ser_PracticesProj.Controllers
         }
 
         [HttpPost]
-        public void CreateBook([FromBody] Book book)
+        public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
             bookService.CreateBook(book);
+            return Ok("Libro creato con successo!");
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateBook(int Id, [FromBody] Book book)
+        {
+            var bookf = bookService.GetById(Id);
+            if (bookf == null)
+            {
+                throw new Exception("Libro non trovato!");
+            }
+            bookf.Title = book.Title;
+            bookf.Anno = book.Anno;
+            bookService.UpdateBook(bookf);
+            return Ok("Libro aggiornato correttamente!");
         }
 
 

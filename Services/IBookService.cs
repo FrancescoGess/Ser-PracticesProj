@@ -13,5 +13,6 @@ namespace Ser_PracticesProj.Services
         public void DeleteById(int Id);
 
         public void CreateBook(Book book);
+        public Book UpdateBook(Book book);
     }
 }

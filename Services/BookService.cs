@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Ser_PracticesProj.Entites;
 using Ser_PracticesProj.Repo;
 
@@ -31,5 +32,13 @@ namespace Ser_PracticesProj.Services
         {
             _bookRepository.CreateBook(book);
         }
+
+        public Book UpdateBook(Book book)
+        {
+            _bookRepository.UpdateBook(book);
+            return book;
+
+        }
     }
+
 }

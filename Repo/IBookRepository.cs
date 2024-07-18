@@ -14,5 +14,7 @@ namespace Ser_PracticesProj.Repo
         public void DeleteById(int Id);
 
         public void CreateBook(Book book);
+
+        public Book UpdateBook(Book book);
     }
 }
