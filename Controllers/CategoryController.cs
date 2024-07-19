@@ -54,6 +54,7 @@ namespace Ser_PracticesProj.Controllers
                 throw new Exception("Categoria non trovata!");
             }
             categoryUp.CatName = category.CatName;
+            categoryService.UpdateCategory(categoryUp);
             return Ok("Categoria aggiornata correttamente!");
         }
     }

@@ -14,6 +14,7 @@ namespace Ser_PracticesProj.Entites
         public string Title { get; set; }
         public string Anno { get; set; }
         public string Description { get; set; }
+
         [JsonIgnore]
         public Category? Category { get; set; }
         public int CategoryId { get; set; }
@@ -23,16 +24,6 @@ namespace Ser_PracticesProj.Entites
         {
 
         }
-
-        public Book(int id, string title, string anno, string description, Category category)
-        {
-            Id = id;
-            Title = title;
-            Anno = anno;
-            Description = description;
-            Category = category;
-        }
-
         public Book(int id, string title, string anno, string description, Category category, int categoryId)
         {
             Id = id;

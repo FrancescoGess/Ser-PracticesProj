@@ -10,11 +10,9 @@ namespace Ser_PracticesProj.Entites
     {
 
         public int Id { get; set; }
-
         public String CatName { get; set; }
         [JsonIgnore]
         public List<Book>? Books { get; set; }
-
         public Category()
         {
         }
