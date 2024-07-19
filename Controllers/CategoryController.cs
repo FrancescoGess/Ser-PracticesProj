@@ -19,26 +19,26 @@ namespace Ser_PracticesProj.Controllers
             this.categoryService = categoryService;
         }
 
-        [HttpGet(Name = "Category")]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             List<Category> categories = categoryService.GetAll();
             return Ok(categories);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{Id},GetById")]
         public async Task<IActionResult> GetById(int Id)
         {
             Category category = categoryService.GetById(Id);
             return Ok(category);
         }
-        [HttpDelete("{Id}")]
+        [HttpDelete("{Id},DeleteById")]
         public void DeleteById(int Id)
         {
             categoryService.DeleteById(Id);
         }
 
-        [HttpPost("peppino")]
+        [HttpPost("CreateCategory")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
             var categoryDB = categoryService.GetByName(category.CatName);
@@ -50,7 +50,7 @@ namespace Ser_PracticesProj.Controllers
             return BadRequest("Categoria già esistente");
         }
 
-        [HttpPut("{Id}")]
+        [HttpPut("{Id}UpdateCategory")]
         public async Task<IActionResult> UpdateCategory(int Id, [FromBody] Category category)
         {
             var categoryUp = categoryService.GetById(Id);

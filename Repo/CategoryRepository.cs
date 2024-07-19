@@ -42,7 +42,6 @@ namespace Ser_PracticesProj.Repo
                 return null;
             }
         }
-
         public void DeleteById(int Id)
         {
             Category category = _context.Categories.Where(c => c.Id == Id).First();

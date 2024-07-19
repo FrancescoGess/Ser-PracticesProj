@@ -23,7 +23,7 @@ namespace Ser_PracticesProj.Controllers
             this.bookService = bookService;
         }
 
-        [HttpGet(Name = "Book")]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             /*var books = new List<Book>(){
@@ -40,7 +40,7 @@ namespace Ser_PracticesProj.Controllers
         }
 
 
-        [HttpGet("{Id}")]
+        [HttpGet("{Id},GetById")]
         public async Task<IActionResult> GetById(int Id)
         {
             Book book = bookService.GetById(Id);
@@ -48,20 +48,20 @@ namespace Ser_PracticesProj.Controllers
         }
 
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{Id},DeleteById")]
         public void DeleteById(int Id)
         {
             bookService.DeleteById(Id);
         }
 
-        [HttpPost]
+        [HttpPost("CreateBook")]
         public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
             bookService.CreateBook(book);
             return Ok("Libro creato con successo!");
         }
 
-        [HttpPut("{Id}")]
+        [HttpPut("{Id},UpdateBook")]
         public async Task<IActionResult> UpdateBook(int Id, [FromBody] Book book)
         {
             var bookUp = bookService.GetById(Id);
