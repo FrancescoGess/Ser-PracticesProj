@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Ser_PracticesProj.Data;
 using Ser_PracticesProj.Entites;
 using Ser_PracticesProj.Repo;
@@ -34,8 +35,11 @@ namespace Ser_PracticesProj.Controllers
                 new Book (5, "Il signore delle cavigliere", "1954"),
             };
             return Ok(books);*/
-
             List<Book> books = bookService.GetAll();
+            if (books.IsNullOrEmpty())
+            {
+                return BadRequest("Lista vuota");
+            }
             return Ok(books);
         }
 

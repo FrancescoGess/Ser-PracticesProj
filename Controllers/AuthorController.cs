@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Ser_PracticesProj.Entites;
 using Ser_PracticesProj.Services;
 
@@ -23,6 +24,10 @@ namespace Ser_PracticesProj.Controllers
         public async Task<IActionResult> GetAll()
         {
             List<Author> authors = authorService.GetAll();
+            if (authors.IsNullOrEmpty())
+            {
+                return BadRequest("Lista vuota");
+            }
             return Ok(authors);
         }
 
