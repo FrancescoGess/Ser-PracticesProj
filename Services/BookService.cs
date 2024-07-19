@@ -18,14 +18,14 @@ namespace Ser_PracticesProj.Services
         {
             return _bookRepository.GetAll();
         }
-        public Book GetById(int Id)
+        public Book GetById(int id)
         {
-            return _bookRepository.GetById(Id);
+            return _bookRepository.GetById(id);
 
         }
-        public void DeleteById(int Id)
+        public void DeleteById(int id)
         {
-            _bookRepository.DeleteById(Id);
+            _bookRepository.DeleteById(id);
         }
 
         public void CreateBook(Book book)

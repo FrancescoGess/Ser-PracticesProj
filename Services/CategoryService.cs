@@ -20,18 +20,18 @@ namespace Ser_PracticesProj.Services
         {
             return _categoryRepository.GetAll();
         }
-        public Category GetById(int Id)
+        public Category GetById(int id)
         {
-            return _categoryRepository.GetById(Id);
+            return _categoryRepository.GetById(id);
         }
 
         public Category GetByName(String name)
         {
             return _categoryRepository.GetByName(name);
         }
-        public void DeleteById(int Id)
+        public void DeleteById(int id)
         {
-            _categoryRepository.DeleteById(Id);
+            _categoryRepository.DeleteById(id);
         }
         public void CreateCategory(Category category)
         {

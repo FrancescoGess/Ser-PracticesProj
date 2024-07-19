@@ -9,9 +9,9 @@ namespace Ser_PracticesProj.Services
     public interface ICategoryService
     {
         public List<Category> GetAll();
-        public Category GetById(int Id);
+        public Category GetById(int id);
         public Category GetByName(String name);
-        public void DeleteById(int Id);
+        public void DeleteById(int id);
         public void CreateCategory(Category category);
         public Category UpdateCategory(Category category);
 

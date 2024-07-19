@@ -23,8 +23,8 @@ namespace Ser_PracticesProj.Controllers
             this.bookService = bookService;
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getAll")]
+        public async Task<IActionResult> getAll()
         {
             /*var books = new List<Book>(){
                 new Book (1, "Il signore degli anelli", "1954"),
@@ -39,19 +39,17 @@ namespace Ser_PracticesProj.Controllers
             return Ok(books);
         }
 
-
-        [HttpGet("{Id},GetById")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet("{id},GetById")]
+        public async Task<IActionResult> GetById(int id)
         {
-            Book book = bookService.GetById(Id);
+            Book book = bookService.GetById(id);
             return Ok(book);
         }
 
-
-        [HttpDelete("{Id},DeleteById")]
-        public void DeleteById(int Id)
+        [HttpDelete("{id},DeleteById")]
+        public void DeleteById(int id)
         {
-            bookService.DeleteById(Id);
+            bookService.DeleteById(id);
         }
 
         [HttpPost("CreateBook")]
@@ -61,23 +59,20 @@ namespace Ser_PracticesProj.Controllers
             return Ok("Libro creato con successo!");
         }
 
-        [HttpPut("{Id},UpdateBook")]
-        public async Task<IActionResult> UpdateBook(int Id, [FromBody] Book book)
+        [HttpPut("{id},UpdateBook")]
+        public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
-            var bookUp = bookService.GetById(Id);
+            var bookUp = bookService.GetById(id);
             if (bookUp == null)
             {
                 throw new Exception("Libro non trovato!");
             }
-            bookUp.Title = book.Title;
-            bookUp.Anno = book.Anno;
-            bookUp.Description = book.Description;
-            bookUp.CategoryId = book.CategoryId;
+            bookUp.title = book.title;
+            bookUp.anno = book.anno;
+            bookUp.description = book.description;
+            bookUp.categoryId = book.categoryId;
             bookService.UpdateBook(bookUp);
             return Ok("Libro aggiornato correttamente!");
         }
-
-
-
     }
 }

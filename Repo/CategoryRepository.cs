@@ -20,12 +20,12 @@ namespace Ser_PracticesProj.Repo
         {
             return _context.Categories.ToList();
         }
-        public Category GetById(int Id)
+        public Category GetById(int id)
         {
-            Category category = _context.Categories.Where(c => c.Id == Id).First();
+            Category category = _context.Categories.Where(c => c.id == id).First();
             if (category == null)
             {
-                throw new KeyNotFoundException($"Categoria con ID {Id} non trovata");
+                throw new KeyNotFoundException($"Categoria con ID {id} non trovata");
             }
             return category;
         }
@@ -35,16 +35,16 @@ namespace Ser_PracticesProj.Repo
             try
             {
                 return _context.Categories.Where((c) =>
-                c.CatName == name).First();
+                c.catName == name).First();
             }
             catch
             {
                 return null;
             }
         }
-        public void DeleteById(int Id)
+        public void DeleteById(int id)
         {
-            Category category = _context.Categories.Where(c => c.Id == Id).First();
+            Category category = _context.Categories.Where(c => c.id == id).First();
             _context.Remove(category);
             _context.SaveChanges();
         }

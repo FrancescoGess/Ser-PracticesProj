@@ -9,29 +9,29 @@ namespace Ser_PracticesProj.Entites
     public class Book
     {
 
-        [JsonIgnore]
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Anno { get; set; }
-        public string Description { get; set; }
+        public int id { get; set; }
+        public string title { get; set; }
+        public string anno { get; set; }
+        public string description { get; set; }
 
         [JsonIgnore]
-        public Category? Category { get; set; }
-        public int CategoryId { get; set; }
+        public Category? category { get; set; }
+        public int categoryId { get; set; }
 
 
         public Book()
         {
 
         }
-        public Book(int id, string title, string anno, string description, Category category, int categoryId)
+
+        public Book(int id, string title, string anno, string description, Category? category, int categoryId)
         {
-            Id = id;
-            Title = title;
-            Anno = anno;
-            Description = description;
-            Category = category;
-            CategoryId = categoryId;
+            this.id = id;
+            this.title = title;
+            this.anno = anno;
+            this.description = description;
+            this.category = category;
+            this.categoryId = categoryId;
         }
     }
 }

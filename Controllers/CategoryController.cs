@@ -26,22 +26,22 @@ namespace Ser_PracticesProj.Controllers
             return Ok(categories);
         }
 
-        [HttpGet("{Id},GetById")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet("{id},GetById")]
+        public async Task<IActionResult> GetById(int id)
         {
-            Category category = categoryService.GetById(Id);
+            Category category = categoryService.GetById(id);
             return Ok(category);
         }
-        [HttpDelete("{Id},DeleteById")]
-        public void DeleteById(int Id)
+        [HttpDelete("{id},deleteById")]
+        public void DeleteById(int id)
         {
-            categoryService.DeleteById(Id);
+            categoryService.DeleteById(id);
         }
 
         [HttpPost("CreateCategory")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
-            var categoryDB = categoryService.GetByName(category.CatName);
+            var categoryDB = categoryService.GetByName(category.catName);
             if (categoryDB == null)
             {
                 categoryService.CreateCategory(category);
@@ -50,15 +50,15 @@ namespace Ser_PracticesProj.Controllers
             return BadRequest("Categoria già esistente");
         }
 
-        [HttpPut("{Id}UpdateCategory")]
-        public async Task<IActionResult> UpdateCategory(int Id, [FromBody] Category category)
+        [HttpPut("{id},UpdateCategory")]
+        public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
-            var categoryUp = categoryService.GetById(Id);
+            var categoryUp = categoryService.GetById(id);
             if (categoryUp == null)
             {
                 throw new Exception("Categoria non trovata!");
             }
-            categoryUp.CatName = category.CatName;
+            categoryUp.catName = category.catName;
             categoryService.UpdateCategory(categoryUp);
             return Ok("Categoria aggiornata correttamente!");
         }

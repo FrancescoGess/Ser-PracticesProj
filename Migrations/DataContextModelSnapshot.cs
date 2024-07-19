@@ -23,65 +23,65 @@ namespace Ser_PracticesProj.Migrations
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<string>("Anno")
+                    b.Property<string>("anno")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("categoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("categoryId");
 
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<string>("CatName")
+                    b.Property<string>("catName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Book", b =>
                 {
-                    b.HasOne("Ser_PracticesProj.Entites.Category", "Category")
-                        .WithMany("Books")
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("Ser_PracticesProj.Entites.Category", "category")
+                        .WithMany("books")
+                        .HasForeignKey("categoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("category");
                 });
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Category", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("books");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,20 +8,21 @@ namespace Ser_PracticesProj.Entites
 {
     public class Category
     {
-        public int Id { get; set; }
-        public String CatName { get; set; }
+        public int id { get; set; }
+        public String catName { get; set; }
         [JsonIgnore]
-        public List<Book>? Books { get; set; }
+        public List<Book>? books { get; set; }
+
+
+        public Category(int id, string catName, List<Book>? books)
+        {
+            this.id = id;
+            this.catName = catName;
+            this.books = books;
+        }
 
         public Category()
         {
-        }
-
-        public Category(int id, string catName, List<Book> books)
-        {
-            Id = id;
-            CatName = catName;
-            Books = books;
         }
     }
 }
