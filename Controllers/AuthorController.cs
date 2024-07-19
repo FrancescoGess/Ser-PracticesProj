@@ -26,7 +26,7 @@ namespace Ser_PracticesProj.Controllers
             List<Author> authors = authorService.GetAll();
             if (authors.IsNullOrEmpty())
             {
-                return BadRequest("Lista vuota");
+                return NotFound("Lista vuota");
             }
             return Ok(authors);
         }
