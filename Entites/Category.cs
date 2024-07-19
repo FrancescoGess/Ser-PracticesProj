@@ -8,7 +8,6 @@ namespace Ser_PracticesProj.Entites
 {
     public class Category
     {
-        [JsonIgnore]
         public int Id { get; set; }
         public String CatName { get; set; }
         [JsonIgnore]

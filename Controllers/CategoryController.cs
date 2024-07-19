@@ -38,11 +38,16 @@ namespace Ser_PracticesProj.Controllers
             categoryService.DeleteById(Id);
         }
 
-        [HttpPost]
+        [HttpPost("peppino")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
-            categoryService.CreateCategory(category);
-            return Ok("Categoria creata con successo!");
+            var categoryDB = categoryService.GetByName(category.CatName);
+            if (categoryDB == null)
+            {
+                categoryService.CreateCategory(category);
+                return Ok("Categoria creata con successo!");
+            }
+            return BadRequest("Categoria già esistente");
         }
 
         [HttpPut("{Id}")]

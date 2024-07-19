@@ -29,6 +29,20 @@ namespace Ser_PracticesProj.Repo
             }
             return category;
         }
+
+        public Category GetByName(String name)
+        {
+            try
+            {
+                return _context.Categories.Where((c) =>
+                c.CatName == name).First();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void DeleteById(int Id)
         {
             Category category = _context.Categories.Where(c => c.Id == Id).First();
@@ -37,6 +51,7 @@ namespace Ser_PracticesProj.Repo
         }
         public void CreateCategory(Category category)
         {
+
             _context.Add(category);
             _context.SaveChanges();
         }
