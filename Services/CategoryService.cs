@@ -40,11 +40,8 @@ namespace Ser_PracticesProj.Services
 
         public Category UpdateCategory(Category category)
         {
-            {
-                _categoryRepository.UpdateCategory(category);
-                return category;
-            }
-
+            _categoryRepository.UpdateCategory(category);
+            return category;
         }
     }
 

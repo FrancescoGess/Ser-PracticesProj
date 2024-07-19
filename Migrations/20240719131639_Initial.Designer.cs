@@ -11,7 +11,7 @@ using Ser_PracticesProj.Data;
 namespace Ser_PracticesProj.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240719095742_Initial")]
+    [Migration("20240719131639_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -23,6 +23,31 @@ namespace Ser_PracticesProj.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Ser_PracticesProj.Entites.Author", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nameAuth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Authors");
+                });
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Book", b =>
                 {
@@ -36,6 +61,9 @@ namespace Ser_PracticesProj.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("authorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("categoryId")
                         .HasColumnType("int");
 
@@ -48,6 +76,8 @@ namespace Ser_PracticesProj.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("authorId");
 
                     b.HasIndex("categoryId");
 
@@ -73,6 +103,12 @@ namespace Ser_PracticesProj.Migrations
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Book", b =>
                 {
+                    b.HasOne("Ser_PracticesProj.Entites.Author", null)
+                        .WithMany("books")
+                        .HasForeignKey("authorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Ser_PracticesProj.Entites.Category", "category")
                         .WithMany("books")
                         .HasForeignKey("categoryId")
@@ -80,6 +116,11 @@ namespace Ser_PracticesProj.Migrations
                         .IsRequired();
 
                     b.Navigation("category");
+                });
+
+            modelBuilder.Entity("Ser_PracticesProj.Entites.Author", b =>
+                {
+                    b.Navigation("books");
                 });
 
             modelBuilder.Entity("Ser_PracticesProj.Entites.Category", b =>

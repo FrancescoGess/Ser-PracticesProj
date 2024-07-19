@@ -17,14 +17,13 @@ namespace Ser_PracticesProj.Entites
         [JsonIgnore]
         public Category? category { get; set; }
         public int categoryId { get; set; }
-
+        public int authorId { get; set; }
 
         public Book()
         {
 
         }
-
-        public Book(int id, string title, string anno, string description, Category? category, int categoryId)
+        public Book(int id, string title, string anno, string description, Category? category, int categoryId, int authorId)
         {
             this.id = id;
             this.title = title;
@@ -32,6 +31,7 @@ namespace Ser_PracticesProj.Entites
             this.description = description;
             this.category = category;
             this.categoryId = categoryId;
+            this.authorId = authorId;
         }
     }
 }

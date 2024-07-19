@@ -32,7 +32,8 @@ namespace Ser_PracticesProj.Controllers
             Category category = categoryService.GetById(id);
             return Ok(category);
         }
-        [HttpDelete("{id},deleteById")]
+
+        [HttpDelete("{id},DeleteById")]
         public void DeleteById(int id)
         {
             categoryService.DeleteById(id);

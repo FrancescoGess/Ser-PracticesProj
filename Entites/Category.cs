@@ -13,7 +13,6 @@ namespace Ser_PracticesProj.Entites
         [JsonIgnore]
         public List<Book>? books { get; set; }
 
-
         public Category(int id, string catName, List<Book>? books)
         {
             this.id = id;
