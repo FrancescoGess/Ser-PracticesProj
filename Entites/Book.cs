@@ -9,7 +9,7 @@ namespace Ser_PracticesProj.Entites
     public class Book
     {
 
-
+        [JsonIgnore]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Anno { get; set; }
