@@ -55,7 +55,6 @@ namespace Ser_PracticesProj.Repo
             _context.SaveChanges();
         }
 
-        // update non aggiorna la categoria e rimane la stessa
         public Category UpdateCategory(Category category)
         {
             _context.Categories.Update(category);
