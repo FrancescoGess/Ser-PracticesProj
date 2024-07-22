@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Ser_PracticesProj.Data;
 using Ser_PracticesProj.Entites;
 using Ser_PracticesProj.Repo;
@@ -23,8 +24,8 @@ namespace Ser_PracticesProj.Controllers
             this.bookService = bookService;
         }
 
-        [HttpGet(Name = "Book")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getAll")]
+        public async Task<IActionResult> getAll()
         {
             /*var books = new List<Book>(){
                 new Book (1, "Il signore degli anelli", "1954"),
@@ -34,48 +35,53 @@ namespace Ser_PracticesProj.Controllers
                 new Book (5, "Il signore delle cavigliere", "1954"),
             };
             return Ok(books);*/
-
             List<Book> books = bookService.GetAll();
+            if (books.IsNullOrEmpty())
+            {
+                return NotFound("Lista vuota");
+            }
             return Ok(books);
         }
 
-
-        [HttpGet("{Id}")]
-        public async Task<IActionResult> GetById(int Id)
+        [HttpGet("{id},GetById")]
+        public async Task<IActionResult> GetById(int id)
         {
-            Book book = bookService.GetById(Id);
+            Book book = bookService.GetById(id);
             return Ok(book);
         }
 
-
-        [HttpDelete("{Id}")]
-        public void DeleteById(int Id)
+        [HttpDelete("{id},DeleteById")]
+        public void DeleteById(int id)
         {
-            bookService.DeleteById(Id);
+            bookService.DeleteById(id);
         }
 
-        [HttpPost]
+        [HttpPost("CreateBook")]
         public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
-            bookService.CreateBook(book);
-            return Ok("Libro creato con successo!");
+            var bookDB = bookService.GetById(book.id);
+            if (bookDB == null)
+            {
+                bookService.CreateBook(book);
+                return Ok("Libro creato con successo!");
+            }
+            return BadRequest("Libro già esistente");
         }
 
-        [HttpPut("{Id}")]
-        public async Task<IActionResult> UpdateBook(int Id, [FromBody] Book book)
+        [HttpPut("{id},UpdateBook")]
+        public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
-            var bookf = bookService.GetById(Id);
-            if (bookf == null)
+            var bookUp = bookService.GetById(id);
+            if (bookUp == null)
             {
                 throw new Exception("Libro non trovato!");
             }
-            bookf.Title = book.Title;
-            bookf.Anno = book.Anno;
-            bookService.UpdateBook(bookf);
+            bookUp.title = book.title;
+            bookUp.anno = book.anno;
+            bookUp.description = book.description;
+            bookUp.categoryId = book.categoryId;
+            bookService.UpdateBook(bookUp);
             return Ok("Libro aggiornato correttamente!");
         }
-
-
-
     }
 }

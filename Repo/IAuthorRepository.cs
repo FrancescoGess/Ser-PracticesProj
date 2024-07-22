@@ -6,12 +6,12 @@ using Ser_PracticesProj.Entites;
 
 namespace Ser_PracticesProj.Repo
 {
-    public interface IBookRepository
+    public interface IAuthorRepository
     {
-        public List<Book> GetAll();
-        public Book GetById(int id);
+        public List<Author> GetAll();
+        public Author GetById(int id);
         public void DeleteById(int id);
-        public void CreateBook(Book book);
-        public Book UpdateBook(Book book);
+        public void CreateAuthor(Author author);
+        public Author UpdateAuthor(Author author);
     }
 }

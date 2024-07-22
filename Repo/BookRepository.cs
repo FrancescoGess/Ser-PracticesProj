@@ -23,15 +23,15 @@ namespace Ser_PracticesProj.Repo
             return _context.Books.ToList();
         }
 
-        public Book GetById(int Id)
+        public Book GetById(int id)
         {
-            Book book = _context.Books.Where(b => b.Id == Id).First();
+            Book book = _context.Books.Where(b => b.id == id).First();
             return book;
         }
 
-        public void DeleteById(int Id)
+        public void DeleteById(int id)
         {
-            Book book = _context.Books.Where(b => b.Id == Id).First();
+            Book book = _context.Books.Where(b => b.id == id).First();
             _context.Remove(book);
             _context.SaveChanges();
         }
