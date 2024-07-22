@@ -47,7 +47,7 @@ namespace Ser_PracticesProj.Controllers
         [HttpPost("CreateAuthor")]
         public async Task<IActionResult> CreateAuthor([FromBody] Author author)
         {
-            var authorDB = authorService.GetById(author.id);
+            var authorDB = authorService.GetByName(author.nameAuth);
             if (authorDB == null)
             {
                 authorService.CreateAuthor(author);
