@@ -26,7 +26,7 @@ namespace Ser_PracticesProj.Controllers
             List<Category> categories = categoryService.GetAll();
             if (categories.IsNullOrEmpty())
             {
-                return NotFound("Lista vuota");
+                return BadRequest("Lista vuota");
             }
             return Ok(categories);
         }

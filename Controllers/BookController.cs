@@ -38,7 +38,7 @@ namespace Ser_PracticesProj.Controllers
             List<Book> books = bookService.GetAll();
             if (books.IsNullOrEmpty())
             {
-                return NotFound("Lista vuota");
+                return BadRequest("Lista vuota");
             }
             return Ok(books);
         }
