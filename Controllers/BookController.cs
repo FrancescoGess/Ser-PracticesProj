@@ -38,7 +38,7 @@ namespace Ser_PracticesProj.Controllers
             List<Book> books = bookService.GetAll();
             if (books.IsNullOrEmpty())
             {
-                return NotFound("Lista vuota");
+                return BadRequest("Lista vuota");
             }
             return Ok(books);
         }
@@ -59,13 +59,8 @@ namespace Ser_PracticesProj.Controllers
         [HttpPost("CreateBook")]
         public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
-            var bookDB = bookService.GetById(book.id);
-            if (bookDB == null)
-            {
-                bookService.CreateBook(book);
-                return Ok("Libro creato con successo!");
-            }
-            return BadRequest("Libro già esistente");
+            bookService.CreateBook(book);
+            return Ok("Libro creato con successo!");
         }
 
         [HttpPut("{id},UpdateBook")]

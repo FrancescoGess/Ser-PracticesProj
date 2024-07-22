@@ -26,7 +26,7 @@ namespace Ser_PracticesProj.Controllers
             List<Author> authors = authorService.GetAll();
             if (authors.IsNullOrEmpty())
             {
-                return NotFound("Lista vuota");
+                return BadRequest("Lista vuota");
             }
             return Ok(authors);
         }
@@ -47,7 +47,7 @@ namespace Ser_PracticesProj.Controllers
         [HttpPost("CreateAuthor")]
         public async Task<IActionResult> CreateAuthor([FromBody] Author author)
         {
-            var authorDB = authorService.GetById(author.id);
+            var authorDB = authorService.GetByName(author.nameAuth);
             if (authorDB == null)
             {
                 authorService.CreateAuthor(author);

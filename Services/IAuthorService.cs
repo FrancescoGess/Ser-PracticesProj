@@ -10,6 +10,7 @@ namespace Ser_PracticesProj.Services
     {
         public List<Author> GetAll();
         public Author GetById(int id);
+        public Author GetByName(String name);
         public void DeleteById(int id);
         public void CreateAuthor(Author author);
         public Author UpdateAuthor(Author author);
