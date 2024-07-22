@@ -11,7 +11,7 @@ using Ser_PracticesProj.Data;
 namespace Ser_PracticesProj.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240719131639_Initial")]
+    [Migration("20240722144443_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
