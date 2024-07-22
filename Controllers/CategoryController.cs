@@ -35,6 +35,10 @@ namespace Ser_PracticesProj.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             Category category = categoryService.GetById(id);
+            if (category == null)
+            {
+                return NotFound("ID non trovato");
+            }
             return Ok(category);
         }
 
@@ -47,7 +51,7 @@ namespace Ser_PracticesProj.Controllers
         [HttpPost("CreateCategory")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
-            var categoryDB = categoryService.GetByName(category.catName);
+            var categoryDB = categoryService.GetById(category.id);
             if (categoryDB == null)
             {
                 categoryService.CreateCategory(category);
@@ -69,5 +73,4 @@ namespace Ser_PracticesProj.Controllers
             return Ok("Categoria aggiornata correttamente!");
         }
     }
-
 }

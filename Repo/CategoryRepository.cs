@@ -30,18 +30,6 @@ namespace Ser_PracticesProj.Repo
             return category;
         }
 
-        public Category GetByName(String name)
-        {
-            try
-            {
-                return _context.Categories.Where((c) =>
-                c.catName == name).First();
-            }
-            catch
-            {
-                return null;
-            }
-        }
         public void DeleteById(int id)
         {
             Category category = _context.Categories.Where(c => c.id == id).First();

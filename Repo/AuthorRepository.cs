@@ -31,18 +31,6 @@ namespace Ser_PracticesProj.Repo
             return author;
         }
 
-        public Author GetByName(String name)
-        {
-            try
-            {
-                return _context.Authors.Where((a) => a.nameAuth == name).First();
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
         public void DeleteById(int id)
         {
             Author author = _context.Authors.Where(a => a.id == id).First();

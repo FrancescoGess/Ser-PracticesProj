@@ -25,10 +25,6 @@ namespace Ser_PracticesProj.Services
             return _categoryRepository.GetById(id);
         }
 
-        public Category GetByName(String name)
-        {
-            return _categoryRepository.GetByName(name);
-        }
         public void DeleteById(int id)
         {
             _categoryRepository.DeleteById(id);

@@ -59,8 +59,13 @@ namespace Ser_PracticesProj.Controllers
         [HttpPost("CreateBook")]
         public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
-            bookService.CreateBook(book);
-            return Ok("Libro creato con successo!");
+            var bookDB = bookService.GetById(book.id);
+            if (bookDB == null)
+            {
+                bookService.CreateBook(book);
+                return Ok("Libro creato con successo!");
+            }
+            return BadRequest("Libro già esistente");
         }
 
         [HttpPut("{id},UpdateBook")]

@@ -24,10 +24,7 @@ namespace Ser_PracticesProj.Services
         {
             return _authorRepository.GetById(id);
         }
-        public Author GetByName(String name)
-        {
-            return _authorRepository.GetByName(name);
-        }
+
         public void DeleteById(int id)
         {
             _authorRepository.DeleteById(id);
