@@ -34,22 +34,25 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Category ID non valido. ID non può essere 0.");
+                return BadRequest("Category ID non valido. ID non può essere 0 o minore.");
             }
             Category category = categoryService.GetById(id);
+            if (category == null)
+            {
+                return NotFound($"Categoria con ID {id} non trovata nel database");
+            }
             return Ok(category);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Category ID non valido. ID non può essere 0.");
+                return BadRequest("Category ID non valido. ID non può essere 0 o minore.");
             }
-
             try
             {
                 await categoryService.DeleteById(id);
@@ -76,9 +79,9 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id},UpdateCategory")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Category ID non valido. ID non può essere 0.");
+                return BadRequest("Category ID non valido. ID non può essere 0 o minore.");
             }
 
             var categoryUp = categoryService.GetById(id);

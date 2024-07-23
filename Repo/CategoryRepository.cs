@@ -23,12 +23,19 @@ namespace Ser_PracticesProj.Repo
         }
         public Category GetById(int id)
         {
-            Category category = _context.Categories.Where(c => c.id == id).First();
-            if (category == null)
+            try
             {
-                throw new KeyNotFoundException($"Categoria con ID {id} non trovata");
+                return _context.Categories.Where(c => c.id == id).First();
             }
-            return category;
+            catch
+            {
+                return null;
+            }
+            /* if (category == null)
+             {
+                 throw new KeyNotFoundException($"Categoria con ID {id} non trovata");
+             }
+             return category;*/
         }
 
         public Category GetByName(String name)
@@ -43,7 +50,7 @@ namespace Ser_PracticesProj.Repo
                 return null;
             }
         }
-         public async Task DeleteById(int id)
+        public async Task DeleteById(int id)
         {
             Category category = await _context.Categories.FirstOrDefaultAsync(b => b.id == id);
             if (category != null)

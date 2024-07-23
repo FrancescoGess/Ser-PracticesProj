@@ -24,12 +24,19 @@ namespace Ser_PracticesProj.Repo
 
         public Author GetById(int id)
         {
-            Author author = _context.Authors.Where(a => a.id == id).First();
-            if (author == null)
+            try
+            {
+                return _context.Authors.Where(a => a.id == id).First();
+            }
+            catch
+            {
+                return null;
+            }
+            /*if (author == null)
             {
                 throw new KeyNotFoundException($"Autore con ID {id} non trovato");
             }
-            return author;
+            return author;*/
         }
 
         public Author GetByName(String name)

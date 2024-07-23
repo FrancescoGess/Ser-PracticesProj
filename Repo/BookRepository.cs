@@ -26,8 +26,16 @@ namespace Ser_PracticesProj.Repo
 
         public Book GetById(int id)
         {
-            Book book = _context.Books.Where(b => b.id == id).First();
-            return book;
+            try
+            {
+                return _context.Books.Where(b => b.id == id).First();
+            }
+            catch
+            {
+                return null;
+            }
+
+
         }
 
         public async Task DeleteById(int id)
@@ -42,7 +50,7 @@ namespace Ser_PracticesProj.Repo
 
         public void CreateBook(Book book)
         {
-            _context.Add(book);
+            _context.Books.Add(book);
             _context.SaveChanges();
         }
 

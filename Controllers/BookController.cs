@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -46,22 +47,25 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Book ID non valido. ID non può essere 0.");
+                return BadRequest("Book ID non valido. ID non può essere 0 o minore.");
             }
             Book book = bookService.GetById(id);
+            if (book == null)
+            {
+                return NotFound($"Libro con ID {id} non trovato nel database.");
+            }
             return Ok(book);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Book ID non valido. ID non può essere 0.");
+                return BadRequest("Book ID non valido. ID non può essere 0 o minore.");
             }
-
             try
             {
                 await bookService.DeleteById(id);
@@ -83,9 +87,9 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Book ID non valido. ID non può essere 0.");
+                return BadRequest("Book ID non valido. ID non può essere 0 o minore.");
             }
 
             var bookUp = bookService.GetById(id);
@@ -94,7 +98,6 @@ namespace Ser_PracticesProj.Controllers
             {
                 throw new Exception("Libro non trovato!");
             }
-
             bookUp.title = book.title;
             bookUp.anno = book.anno;
             bookUp.description = book.description;

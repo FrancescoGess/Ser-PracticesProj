@@ -34,20 +34,24 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Author ID non valido. ID non può essere 0.");
+                return BadRequest("Author ID non valido. ID non può essere 0 o minore.");
             }
             Author author = authorService.GetById(id);
+            if (author == null)
+            {
+                return NotFound($"Autore con ID {id} non trovato nel database.");
+            }
             return Ok(author);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Author ID non valido. ID non può essere 0.");
+                return BadRequest("Author ID non valido. ID non può essere 0 o minore.");
             }
             try
             {
@@ -75,9 +79,9 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id},UpdateAuthor")]
         public async Task<IActionResult> UpdateAuthor(int id, [FromBody] Author author)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return BadRequest("Author ID non valido. ID non può essere 0.");
+                return BadRequest("Author ID non valido. ID non può essere 0 o minore.");
             }
             var authorUp = authorService.GetById(id);
             if (authorUp == null)
