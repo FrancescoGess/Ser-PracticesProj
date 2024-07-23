@@ -34,6 +34,10 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Category ID non valido. ID non può essere 0.");
+            }
             Category category = categoryService.GetById(id);
             return Ok(category);
         }
@@ -41,6 +45,11 @@ namespace Ser_PracticesProj.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Category ID non valido. ID non può essere 0.");
+            }
+
             try
             {
                 await categoryService.DeleteById(id);
@@ -67,7 +76,13 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id},UpdateCategory")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
+            if (id == 0)
+            {
+                return BadRequest("Category ID non valido. ID non può essere 0.");
+            }
+
             var categoryUp = categoryService.GetById(id);
+
             if (categoryUp == null)
             {
                 throw new Exception("Categoria non trovata!");

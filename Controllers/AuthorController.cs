@@ -34,6 +34,10 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Author ID non valido. ID non può essere 0.");
+            }
             Author author = authorService.GetById(id);
             return Ok(author);
         }
@@ -41,6 +45,10 @@ namespace Ser_PracticesProj.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Author ID non valido. ID non può essere 0.");
+            }
             try
             {
                 await authorService.DeleteById(id);
@@ -67,6 +75,10 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id},UpdateAuthor")]
         public async Task<IActionResult> UpdateAuthor(int id, [FromBody] Author author)
         {
+            if (id == 0)
+            {
+                return BadRequest("Author ID non valido. ID non può essere 0.");
+            }
             var authorUp = authorService.GetById(id);
             if (authorUp == null)
             {
