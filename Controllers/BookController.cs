@@ -46,6 +46,10 @@ namespace Ser_PracticesProj.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Book ID non valido. ID non può essere 0.");
+            }
             Book book = bookService.GetById(id);
             return Ok(book);
         }
@@ -53,6 +57,11 @@ namespace Ser_PracticesProj.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest("Book ID non valido. ID non può essere 0.");
+            }
+
             try
             {
                 await bookService.DeleteById(id);
@@ -74,11 +83,18 @@ namespace Ser_PracticesProj.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
+            if (id == 0)
+            {
+                return BadRequest("Book ID non valido. ID non può essere 0.");
+            }
+
             var bookUp = bookService.GetById(id);
+
             if (bookUp == null)
             {
                 throw new Exception("Libro non trovato!");
             }
+
             bookUp.title = book.title;
             bookUp.anno = book.anno;
             bookUp.description = book.description;
