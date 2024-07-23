@@ -28,9 +28,9 @@ namespace Ser_PracticesProj.Services
         {
             return _authorRepository.GetByName(name);
         }
-        public void DeleteById(int id)
+        public Task DeleteById(int id)
         {
-            _authorRepository.DeleteById(id);
+            return _authorRepository.DeleteById(id);
         }
         public void CreateAuthor(Author author)
         {

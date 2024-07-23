@@ -23,9 +23,9 @@ namespace Ser_PracticesProj.Services
             return _bookRepository.GetById(id);
 
         }
-        public void DeleteById(int id)
+        public Task DeleteById(int id)
         {
-            _bookRepository.DeleteById(id);
+            return _bookRepository.DeleteById(id);
         }
 
         public void CreateBook(Book book)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Ser_PracticesProj.Data;
 using Ser_PracticesProj.Entites;
 
@@ -43,11 +44,14 @@ namespace Ser_PracticesProj.Repo
             }
         }
 
-        public void DeleteById(int id)
+        public async Task DeleteById(int id)
         {
-            Author author = _context.Authors.Where(a => a.id == id).First();
-            _context.Remove(author);
-            _context.SaveChanges();
+            Author author = await _context.Authors.FirstOrDefaultAsync(b => b.id == id);
+            if (author != null)
+            {
+                _context.Remove(author);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public void CreateAuthor(Author author)

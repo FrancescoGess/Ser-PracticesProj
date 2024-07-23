@@ -31,20 +31,28 @@ namespace Ser_PracticesProj.Controllers
             return Ok(categories);
         }
 
-        [HttpGet("{id},GetById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             Category category = categoryService.GetById(id);
             return Ok(category);
         }
 
-        [HttpDelete("{id},DeleteById")]
-        public void DeleteById(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
         {
-            categoryService.DeleteById(id);
+            try
+            {
+                await categoryService.DeleteById(id);
+                return Ok("Categoria eliminata con successo");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Errore durante l'eliminazione della categoria: {ex.Message}");
+            }
         }
 
-        [HttpPost("CreateCategory")]
+        [HttpPost()]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
             var categoryDB = categoryService.GetByName(category.catName);

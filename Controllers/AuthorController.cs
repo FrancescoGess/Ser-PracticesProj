@@ -31,20 +31,28 @@ namespace Ser_PracticesProj.Controllers
             return Ok(authors);
         }
 
-        [HttpGet("{id},GetById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             Author author = authorService.GetById(id);
             return Ok(author);
         }
 
-        [HttpDelete("{id},DeleteById")]
-        public void DeleteById(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
         {
-            authorService.DeleteById(id);
+            try
+            {
+                await authorService.DeleteById(id);
+                return Ok("Autore eliminato con successo");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Errore durante l'eliminazione dell'autore: {ex.Message}");
+            }
         }
 
-        [HttpPost("CreateAuthor")]
+        [HttpPost()]
         public async Task<IActionResult> CreateAuthor([FromBody] Author author)
         {
             var authorDB = authorService.GetByName(author.nameAuth);

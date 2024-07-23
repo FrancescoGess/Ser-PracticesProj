@@ -43,27 +43,35 @@ namespace Ser_PracticesProj.Controllers
             return Ok(books);
         }
 
-        [HttpGet("{id},GetById")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             Book book = bookService.GetById(id);
             return Ok(book);
         }
 
-        [HttpDelete("{id},DeleteById")]
-        public void DeleteById(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteById(int id)
         {
-            bookService.DeleteById(id);
+            try
+            {
+                await bookService.DeleteById(id);
+                return Ok("Libro eliminato con successo");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Errore durante l'eliminazione del libro: {ex.Message}");
+            }
         }
 
-        [HttpPost("CreateBook")]
+        [HttpPost]
         public async Task<IActionResult> CreateBook([FromBody] Book book)
         {
             bookService.CreateBook(book);
             return Ok("Libro creato con successo!");
         }
 
-        [HttpPut("{id},UpdateBook")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBook(int id, [FromBody] Book book)
         {
             var bookUp = bookService.GetById(id);

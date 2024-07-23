@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Ser_PracticesProj.Entites;
 using Ser_PracticesProj.Repo;
 
@@ -29,9 +30,9 @@ namespace Ser_PracticesProj.Services
         {
             return _categoryRepository.GetByName(name);
         }
-        public void DeleteById(int id)
+        public Task DeleteById(int id)
         {
-            _categoryRepository.DeleteById(id);
+            return _categoryRepository.DeleteById(id);
         }
         public void CreateCategory(Category category)
         {
